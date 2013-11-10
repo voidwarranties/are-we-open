@@ -6,8 +6,9 @@ while not connected:
 	ser.read()
 	connected = True
 
-ser.write('t')
-print ser.read(100)
-time.sleep(2)
-ser.write('h')
-print ser.read(100)
+ser.write('1')
+temphumidity = ser.read(100)
+temp = temphumidity.split("-")[0]
+humidity = temphumidity.split("-")[1]
+print "temperature: " + temp
+print "humidity: " + humidity
