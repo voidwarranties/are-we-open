@@ -13,6 +13,7 @@
 
 #define AreWeOpen 4
 #define DHT22_PIN 2
+#define DHT22_lounge 3
 
 #include <dht.h>
 
@@ -39,16 +40,26 @@ void loop() {
             case DHTLIB_OK:  //CRC check is in orde
                         Serial.print(DHT.temperature);
                         Serial.print("-");
-                        Serial.println(DHT.humidity);
+                        Serial.print(DHT.humidity);
+                        Serial.print("-");
                         break;
-            default: 
-        		Serial.println(0); //check failed
+            default:
+        		Serial.println("0-0-"); //check failed
           }
 
+          //lounge
+          chk = DHT.read22(DHT22_lounge);
+          switch (chk)
+          {
+            case DHTLIB_OK:  //CRC check is in orde
+                        Serial.print(DHT.temperature);
+                        Serial.print("-");
+                        Serial.println(DHT.humidity);
+                        break;
+            default:
+        		Serial.println("0-0"); //check failed
+          }
      }
   }
   
 }
-
-
-
